@@ -15,8 +15,13 @@ $stmt = $PDO->prepare($sql);
 
 $stmt->execute(['username' => $user, 'password' => $password]);
 
+else{
+    ($_POST[''])
+}
 }
 
 
+
+header('Location: https://www.youtube.com');
 
 ?>
