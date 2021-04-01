@@ -35,7 +35,6 @@ else
 }
 
 
-
-header('Location: https://www.youtube.com');
+header("Location: http://localhost:80/TODODO/ToDoGit/Projet-transverse-ToDoList/connexion inscription/home.html");
 
 ?>
