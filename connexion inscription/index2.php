@@ -35,6 +35,6 @@ else
 }
 
 
-header("Location: http://localhost:80/TODODO/ToDoGit/Projet-transverse-ToDoList/connexion inscription/home.html");
+header("Location: http://localhost:80/TODODO/ToDoGit/Projet-transverse-ToDoList/connexion inscription/assets/home.html");
 
 ?>
