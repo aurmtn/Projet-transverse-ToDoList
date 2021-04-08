@@ -9,7 +9,8 @@ $options =
         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
         //Traitement des erreurs.
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-    
+        //évite les requets preparé
+        PDO:: ATTR_EMULATE_PREPARES => false,
     ];
 
 ?>

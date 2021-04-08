@@ -10,8 +10,8 @@ $password = $_POST['password'];
 
 $PDO = new PDO('mysql:host=localhost;dbname=to_do_list',$DB_USER,$DB_PASS,$options);
 
-$sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
-
+$sql = $PDO=>prepare $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
+$sql = execute();
 $stmt = $PDO->prepare($sql);
 
 $stmt->execute(['username' => $user, 'password' => $password]);
