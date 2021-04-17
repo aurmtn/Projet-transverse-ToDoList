@@ -16,3 +16,8 @@ body {
     display: none;
 }
 
+#displayuser{
+    text-align: center;
+    margin-left: 20rem;
+}
+

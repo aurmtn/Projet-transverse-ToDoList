@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,36 +25,6 @@
             <input type="password" name="password" value="" required>
           </div>
           <input type="submit" value="login" class="btn solid" name="login">
-
-          <?php
-
-                session_start();
-
-                //Si la clef de session username et password n'éxiste pas alors on affiche le message dans echo ""
-                if (!key_exists("username", $_SESSION) || !key_exists("password", $_SESSION)) {                                         
-                    echo "Ce n'est pas les bon logs";
-                } else {
-                //Si la clef de session username et password éxiste alors on renvoie vers la page home.html
-                  header("Location: http://localhost/TODODO/ToDoGit/Projet-transverse-ToDoList/connexion inscription/home");
-                }
-
-          ?>
-
-          <p class="social-text">connexion avec les réseaux social</p>
-          <div class="social-media">
-            <a href="#" class="social-icon">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="social-icon">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="social-icon">
-              <i class="fab fa-google"></i>
-            </a>
-            <a href="#" class="social-icon">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-          </div>
         </form>
 
         <form action="index2.php" class="sign-up-form" method="POST">
@@ -73,21 +42,18 @@
             <input type="password" placeholder="password" name="password" value="" required />
           </div>
           <input type="submit" class="btn" value="Signup" name="submit" />
-          <p class="social-text">inscription avec les réseaux</p>
-          <div class="social-media">
-            <a href="#" class="social-icon">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="social-icon">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="social-icon">
-              <i class="fab fa-google"></i>
-            </a>
-            <a href="#" class="social-icon">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-          </div>
+          <?php
+
+          //Initialisation de la session
+          session_start();                 
+          //Si la clef session existe alors renvoie vers home.html
+          if (key_exists("username", $_SESSION) || key_exists("password", $_SESSION)){ 
+          header("Location: http://localhost/TODODO/ToDoGit/Projet-transverse-ToDoList/connexion inscription/home");
+          } else {
+          //Sinon rien car la page home.php s'occupe d'afficher le message d'erreur
+            echo " "; 
+          }
+          ?>
         </form>
 
       </div>
