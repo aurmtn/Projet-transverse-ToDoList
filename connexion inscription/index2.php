@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 require 'db-config.php';        //Fichier de configuration
@@ -30,9 +29,14 @@ if(isset($_POST["login"]))
                 $_SESSION["password"] = $_POST["password"];
                 header("Location: http://localhost/TODODO/ToDoGit/Projet-transverse-ToDoList/connexion inscription/home"); 
 
-        } else {                                                                                                                            //Sinon affichage du message 'pas les bon logs'  
-                echo"<center><h1>Ce n'est pas les bon logs ! </h1></center><br><br>";
-                echo"<center><h1><u>Retourne en arrière.</u></h1></center>";
+        } else {
+
+
+                
+                header("Location: http://localhost/TODODO/ToDoGit/Projet-transverse-ToDoList/connexion inscription/indexDon.php?error=mauvaislogs");
+                                                                                                                                         //Sinon affichage du message 'pas les bon logs'  
+                // echo"<center><h1>Ce n'est pas les bon logs ! </h1></center><br><br>";
+                // echo"<center><h1><u>Retourne en arrière.</u></h1></center>";
         }
 
         } else {

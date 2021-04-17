@@ -1,3 +1,7 @@
+<?php
+// Initialisation de la session
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +28,17 @@
             <i class="fas fa-lock"></i>
             <input type="password" name="password" value="" required>
           </div>
+          <?php
+          // Si dans l'url il y'a le message 'error'
+          if (isset($_GET['error'])){
+            // Si le message 'error' == 'mauvaislogs'
+            if ($_GET['error'] == 'mauvaislogs'){
+              // Affichage du message dans 'echo' 
+              echo "<u>Ce n'est pas les bons logs, allez vous inscrire !</u>";
+
+            }
+          }
+         ?>
           <input type="submit" value="login" class="btn solid" name="login">
         </form>
 
@@ -43,19 +58,19 @@
           </div>
           <input type="submit" class="btn" value="Signup" name="submit" />
           <?php
-
-          //Initialisation de la session
-          session_start();                 
           //Si la clef session existe alors renvoie vers home.html
-          if (key_exists("username", $_SESSION) || key_exists("password", $_SESSION)){ 
-          header("Location: http://localhost/TODODO/ToDoGit/Projet-transverse-ToDoList/connexion inscription/home");
+          if (key_exists("username", $_SESSION) || key_exists("password", $_SESSION)){
+
+              header("Location: http://localhost/TODODO/ToDoGit/Projet-transverse-ToDoList/connexion inscription/home");
+          
           } else {
+
           //Sinon rien car la page home.php s'occupe d'afficher le message d'erreur
-            echo " "; 
-          }
+            echo " ";
+
+            }
           ?>
         </form>
-
       </div>
     </div>
 
