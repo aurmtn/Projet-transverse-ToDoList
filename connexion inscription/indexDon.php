@@ -36,8 +36,6 @@
                     echo "Ce n'est pas les bon logs";
                 } else {
                 //Si la clef de session username et password éxiste alors on renvoie vers la page home.html
-                  echo "<p>Bienvenue " . $_SESSION["username"] . " "
-                  . $_SESSION["password"] . "</p>";
                   header("Location: http://localhost/TODODO/ToDoGit/Projet-transverse-ToDoList/connexion inscription/home");
                 }
 
