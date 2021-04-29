@@ -61,7 +61,7 @@ session_start();
           //Si la clef session existe alors renvoie vers home.html
           if (key_exists("username", $_SESSION) || key_exists("password", $_SESSION)){
 
-              header("Location: http://localhost/TODODO/ToDoGit/Projet-transverse-ToDoList/connexion inscription/home");
+              header("Location: ./connexion inscription/home");
           
           } else {
 
