@@ -131,6 +131,7 @@
                         </div>
                     </div>
                 </div>
+                
                  <!-- Tâche n°2 -->
                  <div class="row px-3 align-items-center todo-item rounded">
                 <div class="col-auto m-1 p-0 d-flex align-items-center">
