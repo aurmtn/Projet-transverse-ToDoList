@@ -58,10 +58,10 @@ session_start();
           </div>
           <input type="submit" class="btn" value="Signup" name="submit" />
           <?php
-          //Si la clef session existe alors renvoie vers home.html
+          //Si la clef session existe alors renvoie vers home.php
           if (key_exists("username", $_SESSION) || key_exists("password", $_SESSION)){
 
-              header("Location: http://localhost/TODODO/ToDoGit/Projet-transverse-ToDoList/connexion inscription/home");
+              header("Location: ./home");
           
           } else {
 
