@@ -33,7 +33,7 @@ if(isset($_POST["login"]))
 
 
                 
-                header("Location: ./connexioninscription/indexDon.php?error=mauvaislogs");
+                header("Location: ./indexDon.php?error=mauvaislogs");
                                                                                                                                          //Sinon affichage du message 'pas les bon logs'  
                 // echo"<center><h1>Ce n'est pas les bon logs ! </h1></center><br><br>";
                 // echo"<center><h1><u>Retourne en arrière.</u></h1></center>";
