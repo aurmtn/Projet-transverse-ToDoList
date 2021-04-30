@@ -58,10 +58,10 @@ session_start();
           </div>
           <input type="submit" class="btn" value="Signup" name="submit" />
           <?php
-          //Si la clef session existe alors renvoie vers home.php
+          //Si la clef session existe alors renvoie vers home.html
           if (key_exists("username", $_SESSION) || key_exists("password", $_SESSION)){
 
-              header("Location: ./home");
+              header("Location: ./connexion inscription/home");
           
           } else {
 
