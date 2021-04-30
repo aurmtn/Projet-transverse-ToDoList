@@ -46,14 +46,25 @@
                     <i class="fa far fa-calendar my-2 px-1 text-danger btn clear-due-date-button d-none"
                         data-toggle="tooltip" data-placement="bottom" title="Effacer la date limite"></i>
                 </div>
+
                 <div class="col-auto px-0 mx-0 mr-2">
+
                     <!-- Fonction pour ajouter une nouvelle tâche -->
-                    <button type="button" class="btn btn-primary" onclick="ajouter()">Ajouter</button>
+                    
+                    <form action="taches.php"></form>
+
+
+<!--                 
                     <div id="Menu">
-                        <!-- Menu des tâches -->
+
+                        Menu des tâches
+
                         <u>Importance</u>
-                    </div>
+
+                    </div> -->
+                    
                 </div>
+
             </div>
         </div>
     </div>
