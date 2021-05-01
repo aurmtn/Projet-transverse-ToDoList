@@ -1,3 +1,6 @@
+<?php 
+require 'db-config.php';
+?>
 <!DOCTYPE html>
 <html >
   <head>
@@ -9,12 +12,14 @@
         integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="assets/taches.js"></script>
 
+<!-- =============================================================================================================================================================================== -->
     <?php
         //Initialisation de la session
         session_start();
         //Affichage du nom de l'utilisateur sur la page d'acceuil
-        echo "<center><h1>Bienvenue  " . $_SESSION["username"] . " ! </h1></center>";
+        echo "<br><br><center><h2>Bienvenue  " . $_SESSION["username"] . " ! </h2></center>";
     ?>
+<!-- =============================================================================================================================================================================== -->
 
     <!-- Titre de la page -->
     <div class="row m-1 p-4">
@@ -31,10 +36,27 @@
             <div class="col col-11 mx-auto">
                 <div
                     class="row bg-white rounded shadow-sm p-2 add todo-wrapper aligh-items-center justify-content-center">
-                    <div class="col">
-                        <input class="form-control-lg border-0 add-todo-input bg-transparent rounded" type="text"
-                            placeholder="Ajouter nouvelle tâche...">
-                    </div>
+
+                    <form method="POST" action="home.php">
+                    <!-- <div class="col"> -->
+                        <input class="form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" placeholder="Ajouter nouvelle tâche..." name="nouvelletache" >
+                        <button type="submit" class="btn btn-primary" name="submit">Ajouter</button>
+                    <!-- </div> -->
+                    </form>
+
+<!-- =============================================================================================================================================================================== -->
+                    <!-- Message d'erreur si l'utilisateur ne rentre aucune tache -->
+                        <?php
+                                if(isset($_GET["error"])){
+                                    if ($_GET['error'] == 'aucunetache'){
+                                    //  Affichage du message dans 'echo' 
+                                     echo "<h3><br><br>Ajoute une tâche !</h3>";     
+
+                                    }
+                                } 
+                        ?>
+<!-- =============================================================================================================================================================================== -->
+
                     <div class="col-auto m-0 px-2 d-flex align-items-center">
                         <label class="text-secondary my-2 p-0 px-1 view-opt label due-date-label d-none">Date de
                             de rendu non définie</label>
@@ -47,15 +69,55 @@
                         data-toggle="tooltip" data-placement="bottom" title="Effacer la date limite"></i>
                 </div>
 
-                <div class="col-auto px-0 mx-0 mr-2">
-                    <!-- Fonction pour ajouter une nouvelle tâche -->
-                    <button type="button" class="btn btn-primary" onclick="ajouter()">Ajouter</button>
-                    <div id="Menu">
-                        <!-- Menu des tâches -->
-                        <u>Importance</u>
-                    </div>
-                </div>
-                
+<!-- =============================================================================================================================================================================== -->
+
+                <?php
+
+                        require 'db-config.php';
+
+                        if(isset($_POST["submit"])){
+                        
+                            if(empty($_POST['nouvelletache'])) {
+                                header("Location: ./home.php?error=aucunetache");
+                            } else {
+                            
+                            
+                            $taches = $_POST["nouvelletache"];
+                            
+                            $PDO = new PDO('mysql:host=localhost;dbname=to_do_list',$DB_USER,$DB_PASS,$options);
+                            
+                            $sql = "INSERT INTO taches (nomtache) VALUES (:nomtache)";
+                            
+                            $stmt = $PDO->prepare($sql);
+                            
+                            $stmt->execute(['nomtache' => $taches]);
+                            
+                            header('Location: ./home.php');
+
+
+                            }
+
+                        
+                        }
+
+                ?>
+<!-- =============================================================================================================================================================================== -->
+                <!-- 
+                <form class="lestaches" action="taches.php" method="POST">
+                        <button type="button" class="btn btn-primary">Ajouter</button>     -->
+                       <!-- <div class="col-auto px-0 mx-0 mr-2"> -->
+
+                        <!-- Fonction pour ajouter une nouvelle tâche -->
+                        <!-- <button type="button" class="btn btn-primary" onclick="ajouter()">Ajouter</button> -->
+
+                        <!-- <div id="Menu">
+                             Menu des tâches
+                            <u>Importance</u>
+                        </div> -->
+
+                        <!-- </div> -->
+                <!-- </form> -->
+
             </div>
         </div>
     </div>
@@ -132,5 +194,25 @@
                         </div>
                     </div>
                 </div>
+
+                
+<!-- =============================================================================================================================================================================== -->
+
+                        <?php
+                        
+                        $PDO = new PDO('mysql:host=localhost;dbname=to_do_list',$DB_USER,$DB_PASS,$options);
+
+                        $stm = $PDO->query('SELECT * FROM taches');
+
+                        $rows = $stm->fetchAll(PDO::FETCH_NUM);
+
+                        foreach($rows as $row) {
+                            echo("<left><h3>$row[0]</h3></left>");
+                        }
+
+                        ?>   
+
+<!-- =============================================================================================================================================================================== -->
+
                 
                  <!-- Tâche n°2 -->

@@ -28,6 +28,7 @@ session_start();
             <i class="fas fa-lock"></i>
             <input type="password" name="password" value="" required>
           </div>
+<!-- =============================================================================================================================================================================== -->
           <?php
           // Si dans l'url il y'a le message 'error'
           if (isset($_GET['error'])){
@@ -39,6 +40,7 @@ session_start();
             }
           }
          ?>
+<!-- =============================================================================================================================================================================== -->
           <input type="submit" value="login" class="btn solid" name="login">
         </form>
 
@@ -57,19 +59,21 @@ session_start();
             <input type="password" placeholder="password" name="password" value="" required />
           </div>
           <input type="submit" class="btn" value="Signup" name="submit" />
+<!-- =============================================================================================================================================================================== -->
           <?php
           //Si la clef session existe alors renvoie vers home.html
           if (key_exists("username", $_SESSION) || key_exists("password", $_SESSION)){
 
-              header("Location: ./connexion inscription/home");
+              header("Location: ./home");
           
           } else {
 
           //Sinon rien car la page home.php s'occupe d'afficher le message d'erreur
-            echo " ";
+          
 
             }
           ?>
+<!-- =============================================================================================================================================================================== -->
         </form>
       </div>
     </div>

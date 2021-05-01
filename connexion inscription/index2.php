@@ -27,13 +27,13 @@ if(isset($_POST["login"]))
         {       
                 $_SESSION["username"] = $_POST["username"];
                 $_SESSION["password"] = $_POST["password"];
-                header("Location: ./connexion inscription/home"); 
+                header("Location: ./home"); 
 
         } else {
 
 
                 
-                header("Location: ./connexion inscription/indexDon.php?error=mauvaislogs");
+                header("Location: ./indexDon.php?error=mauvaislogs");
                                                                                                                                          //Sinon affichage du message 'pas les bon logs'  
                 // echo"<center><h1>Ce n'est pas les bon logs ! </h1></center><br><br>";
                 // echo"<center><h1><u>Retourne en arrière.</u></h1></center>";
@@ -57,7 +57,7 @@ if(isset($_POST["login"]))
 
                 $stmt->execute(['username' => $user, 'password' => $password, 'email' => $mail]);                                       //Execution de la requête SQL
                 
-                header("Location: ./connexion inscription/indexDon.php");     //Redirection vers la page d'origine
+                header("Location: ./indexDon.php");     //Redirection vers la page d'origine
 
         }
 ?>
