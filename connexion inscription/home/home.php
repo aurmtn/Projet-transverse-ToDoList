@@ -170,19 +170,34 @@ require 'db-config.php';
 
                     <?php
 
-                    $PDO = new PDO('mysql:host=localhost;dbname=to_do_list', $DB_USER, $DB_PASS, $options);
+                         $PDO = new PDO('mysql:host=localhost;dbname=to_do_list', $DB_USER, $DB_PASS, $options);
 
-                    $stm = $PDO->query('SELECT * FROM taches');
+                            $stm = $PDO->query('SELECT * FROM taches');
 
-                    $rows = $stm->fetchAll(PDO::FETCH_NUM);
+                            $rows = $stm->fetchAll(PDO::FETCH_NUM);
 
-                    foreach ($rows as $row) {
-                        echo ("<left><h3>$row[0]</h3></left>");
-                    }
+                            foreach ($rows as $row) {
+                            echo ("<left><h3>$row[0] : c'est la tache $row[1]</h3></left>");
+                            }
 
                     ?>
 
                     <!-- =============================================================================================================================================================================== -->
+                    <?php
+
+                            // if(isset($_POST[""]))
+// 
+                            // $PDO = new PDO('mysql:host=localhost;dbname=to_do_list',$DB_USER,$DB_PASS,$options);
+// 
+                            // $sql = "DELETE FROM 'taches' WHERE 'id' = 1";
+// 
+                            // $stmt = $PDO->prepare($sql);
+// 
+                            // $stmt->execute();
+
+                    ?>
+                    <!-- =============================================================================================================================================================================== -->
+
 
 
                     <!-- Tâche n°2 -->
