@@ -40,6 +40,8 @@ require 'db-config.php';
                         <!-- <div class="col"> -->
                         <input class="form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" placeholder="Ajouter nouvelle tâche..." name="nouvelletache">
                         <button type="submit" class="btn btn-primary" name="submit">Ajouter</button>
+                        <i class="fa far far fa-calendar-times-o my-2 px-1 text-danger btn clear-due-date-button d-done" data-toggle="tooltip" data-placement="bottom" title="Supprimer tâche"></i>Supprimer tâche
+
                         <!-- </div> -->
                     </form>
 
@@ -56,12 +58,10 @@ require 'db-config.php';
                     <!-- =============================================================================================================================================================================== -->
 
                     <div class="col-auto m-0 px-2 d-flex align-items-center">
-                        <label class="text-secondary my-2 p-0 px-1 view-opt label due-date-label d-none">Date de
+                        <label class="text-secondary my-3 p-0 px-1 view-opt label due-date-label d-none">Date de
                             de rendu non définie</label>
-                        <i class="fa fa-calendar my-2 px-1 text-primary btn due-date-button" data-toggle="tooltip" data-placement="bottom" title="Définir une date de rendu"></i>
-                        <i class="fa far far fa-calendar-times-o my-2 px-1 text-danger btn clear-due-date-button d-done" data-toggle="tooltip" data-placement="bottom" title="Supprimer date limite"></i>
                     </div>
-                    <i class="fa far fa-calendar my-2 px-1 text-danger btn clear-due-date-button d-none" data-toggle="tooltip" data-placement="bottom" title="Effacer la date limite"></i>
+                    
                 </div>
 
                 <!-- =============================================================================================================================================================================== -->
@@ -93,69 +93,28 @@ require 'db-config.php';
 
                 ?>
                 <!-- =============================================================================================================================================================================== -->
-                <!-- 
-                <form class="lestaches" action="taches.php" method="POST">
-                        <button type="button" class="btn btn-primary">Ajouter</button>     -->
-                <!-- <div class="col-auto px-0 mx-0 mr-2"> -->
 
-                <!-- Fonction pour ajouter une nouvelle tâche -->
-                <!-- <button type="button" class="btn btn-primary" onclick="ajouter()">Ajouter</button> -->
-
-                <!-- <div id="Menu">
-                             Menu des tâches
-                            <u>Importance</u>
-                        </div> -->
-
-                <!-- </div> -->
-                <!-- </form> -->
-
-                <!-- </div>
-        </div>
-    </div> -->
-                <div class="p-2 mx-4 border-black-25 border-bottom"></div>
-                <!-- Séléction des options  -->
-                <!-- <div class="row m-1 p-3 px-5 justify-content-end">
-                    <div class="col-auto d-flex align-items-center">
-                        <label class="text-secondary my-2 pr-2 view-opt-label">Filtres</label>
-                        <select class="custom-select custom-select-sm btn my-2">
-                            <option value="all" selected>Tout</option>
-                            <option value="completed">Complétées</option>
-                            <option value="active">En cours</option>
-                            <option value="has-due-date">A une date limite</option>
-                        </select>
-                    </div>
-                    <div class="col-auto d-flex align-items-center px-1 pr-3">
-                        <label class="text-secondary my-2 pr-2 view-opt-label">Trier</label>
-                        <select class="custom-select custom-select-sm btn my-2">
-                            <option value="added-date-asc" selected>Date d'ajout</option>
-                            <option value="due-date-desc">Date limite</option>
-                        </select>
-                        <i class="fa fa fa-sort-amount-asc text-info btn mx-0 px-0 pl-1" data-toggle="tooltip" data-placement="bottom" title="Croissant"></i>
-                        <i class="fa fa fa-sort-amount-desc text-info btn mx-0 px-0 pl-1 d-none" data-toggle="tooltip" data-placement="bottom" title="Décroissant"></i>
-                    </div>
-                </div> -->
+                    
                 <!-- Liste des tâches à faire -->
                 <div class="row mx-1 px-5 pb-3 w-80">
                     <div class="col mx-auto">
                         <!-- Tâche n°1 -->
-                        <div class="row px-3 align-items-center todo-item rounded">
+                        <!-- <div class="row px-3 align-items-center todo-item rounded">
                             <div class="col-auto m-1 p-0 d-flex align-items-center">
                                 <h2 class="m-0 p-0">
                                     <i class="fa fa-square-o text-primary btn m-0 p-0 d-none" data-toggle="tooltip" data-placement="bottom" title="Noter comme fait"></i>
                                 </h2>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- <div class="col-auto m-1 p-0 todo-actions">
                     <div class="row d-flex align-items-center justify-content-end">
                         <h5 class="m-0 p-0 px-2">
                             <i class="fa fa-pencil text-info btn m-0 p-0" data-toggle="tooltip" data-placement="bottom"
-                                title="Modifier tâche"></i>
-                        </h5>
-                        <h5 class="m-0 p-0 px-2">
-                            <i class="fa fa-trash-o text-danger btn m-0 p-0" data-toggle="tooltip"
-                                data-placement="bottom" title="Supprimer tâche"></i> -->
+                                title="Modifier tâche"></i> -->
                         <!-- </h5>
-                    </div> -->
+
+                        </h5> -->
+                    <!-- </div> -->
                     <!-- <div class="row todo-created-info">
             <div class="col-auto d-flex align-items-center pr-2">
                 <i class="fa fa-info-circle my-2 px-2 text-black-50 btn" data-toggle="tooltip" data-placement="bottom" title="Date de création" data-original-title="Date de création"></i>
@@ -176,13 +135,20 @@ require 'db-config.php';
 
                             $rows = $stm->fetchAll(PDO::FETCH_NUM);
 
+<<<<<<< HEAD
                             foreach ($rows as $row) {
                             echo ("<left><h3>$row[0] : c'est la tache $row[1]</h3></left>");
                             }
+=======
+                    foreach ($rows as $row) {
+                        echo ("<br><br><center><h3>$row[0]</h3></center><br>");
+                    }
+>>>>>>> 260b492cfb3fdec09134333153d487bb6b123811
 
                     ?>
 
                     <!-- =============================================================================================================================================================================== -->
+<<<<<<< HEAD
                     <?php
 
                             // if(isset($_POST[""]))
@@ -198,6 +164,8 @@ require 'db-config.php';
                     ?>
                     <!-- =============================================================================================================================================================================== -->
 
+=======
+                    
+>>>>>>> 260b492cfb3fdec09134333153d487bb6b123811
 
-
-                    <!-- Tâche n°2 -->
+                        <!-- Tâche n°2 -->
