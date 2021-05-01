@@ -20,6 +20,11 @@ body {
     line-height: 1.6;
 }
 
+h3{
+    margin-left: -6%;
+    margin-bottom: 15%;
+}
+
 .add-todo-input,
 .edit-todo-input {
     outline: none;
@@ -51,4 +56,3 @@ body {
 .todo-item.editing .todo-actions .edit-icon {
     display: none !important;
 }
-
