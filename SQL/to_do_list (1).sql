@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 01 mai 2021 à 14:41
+-- Généré le : sam. 01 mai 2021 à 23:23
 -- Version du serveur :  10.4.14-MariaDB
 -- Version de PHP : 7.4.11
 
@@ -64,15 +64,10 @@ CREATE TABLE `matieres` (
 --
 
 CREATE TABLE `taches` (
-  `nomtache` char(255) CHARACTER SET utf8mb4 DEFAULT NULL
+  `nomtache` char(255) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `date` date NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `taches`
---
-
-INSERT INTO `taches` (`nomtache`) VALUES
-('ceci est ma nouvelle tachee');
 
 -- --------------------------------------------------------
 
@@ -91,7 +86,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `password`, `email`) VALUES
-('uncompte', 'test', 'uncompte@gmail.com');
+('newone', 'test', 'newone@gmail.com');
 
 --
 -- Index pour les tables déchargées
@@ -116,6 +111,12 @@ ALTER TABLE `matieres`
   ADD PRIMARY KEY (`nom_matietre`);
 
 --
+-- Index pour la table `taches`
+--
+ALTER TABLE `taches`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -136,6 +137,12 @@ ALTER TABLE `etudiant`
 --
 ALTER TABLE `matieres`
   MODIFY `nom_matietre` int(50) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `taches`
+--
+ALTER TABLE `taches`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
