@@ -12,14 +12,14 @@ require 'db-config.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <script src="assets/taches.js"></script>
 
-    <!-- =============================================================================================================================================================================== -->
+<!-- =============================================================================================================================================================================== -->
     <?php
     //Initialisation de la session
     session_start();
     //Affichage du nom de l'utilisateur sur la page d'acceuil
     echo "<br><br><center><h2>Bienvenue  " . $_SESSION["username"] . " ! </h2></center>";
     ?>
-    <!-- =============================================================================================================================================================================== -->
+<!-- =============================================================================================================================================================================== -->
 
     <!-- Titre de la page -->
     <div class="row m-1 p-4">
@@ -39,13 +39,14 @@ require 'db-config.php';
                     <form method="POST" action="home.php">
                         <!-- <div class="col"> -->
                         <input class="form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" placeholder="Ajouter nouvelle tâche..." name="nouvelletache">
+                        <br><br><input class="form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" placeholder="Date : Année-mois-jour" name="date">
                         <button type="submit" class="btn btn-primary" name="submit">Ajouter</button>
-                        <i class="fa far far fa-calendar-times-o my-2 px-1 text-danger btn clear-due-date-button d-done" data-toggle="tooltip" data-placement="bottom" title="Supprimer tâche"></i>Supprimer tâche
+                        <!-- <input class="fa far far fa-calendar-times-o my-2 px-1 text-danger btn clear-due-date-button d-done" data-toggle="tooltip" data-placement="bottom" title="Supprimer tâche" name="supprimer">Supprimer tâche -->
 
                         <!-- </div> -->
                     </form>
 
-                    <!-- =============================================================================================================================================================================== -->
+<!-- =============================================================================================================================================================================== -->
                     <!-- Message d'erreur si l'utilisateur ne rentre aucune tache -->
                     <?php
                     if (isset($_GET["error"])) {
@@ -55,7 +56,7 @@ require 'db-config.php';
                         }
                     }
                     ?>
-                    <!-- =============================================================================================================================================================================== -->
+<!-- =============================================================================================================================================================================== -->
 
                     <div class="col-auto m-0 px-2 d-flex align-items-center">
                         <label class="text-secondary my-3 p-0 px-1 view-opt label due-date-label d-none">Date de
@@ -64,7 +65,7 @@ require 'db-config.php';
                     
                 </div>
 
-                <!-- =============================================================================================================================================================================== -->
+<!-- =============================================================================================================================================================================== -->
 
                 <?php
 
@@ -78,21 +79,22 @@ require 'db-config.php';
 
 
                         $taches = $_POST["nouvelletache"];
+                        $date = $_POST["date"];
 
                         $PDO = new PDO('mysql:host=localhost;dbname=to_do_list', $DB_USER, $DB_PASS, $options);
 
-                        $sql = "INSERT INTO taches (nomtache) VALUES (:nomtache)";
+                        $sql = "INSERT INTO taches (nomtache, date) VALUES (:nomtache, :date)";
 
                         $stmt = $PDO->prepare($sql);
 
-                        $stmt->execute(['nomtache' => $taches]);
+                        $stmt->execute(['nomtache' => $taches, 'date' => $date]);
 
                         header('Location: ./home.php');
                     }
                 }
 
                 ?>
-                <!-- =============================================================================================================================================================================== -->
+<!-- =============================================================================================================================================================================== -->
 
                     
                 <!-- Liste des tâches à faire -->
@@ -125,47 +127,43 @@ require 'db-config.php';
     </div> -->
 
 
-                    <!-- =============================================================================================================================================================================== -->
+
+                    <div class="text-center">
+
+                        <form action="home.php" method="POST">
+                            <br>
+                            <button type="submit" class="btn btn-primary" name="supprimer">Supprimer</button>
+                        </form>
+
+                    </div>
+
+<!-- =============================================================================================================================================================================== -->
 
                     <?php
 
                          $PDO = new PDO('mysql:host=localhost;dbname=to_do_list', $DB_USER, $DB_PASS, $options);
 
-                            $stm = $PDO->query('SELECT * FROM taches');
+                         $stm = $PDO->query('SELECT * FROM taches');
 
-                            $rows = $stm->fetchAll(PDO::FETCH_NUM);
+                         $rows = $stm->fetchAll(PDO::FETCH_NUM);
 
-<<<<<<< HEAD
-                            foreach ($rows as $row) {
-                            echo ("<left><h3>$row[0] : c'est la tache $row[1]</h3></left>");
-                            }
-=======
-                    foreach ($rows as $row) {
-                        echo ("<br><br><center><h3>$row[0]</h3></center><br>");
-                    }
->>>>>>> 260b492cfb3fdec09134333153d487bb6b123811
+                         foreach ($rows as $row) {
+                            echo ("<br><br><center><h3> $row[0]</h3> <u> tache N° $row[1] a rendre avant le $row[2]</u></center>");   
+                            
+                        }
 
                     ?>
 
-                    <!-- =============================================================================================================================================================================== -->
-<<<<<<< HEAD
+<!-- =============================================================================================================================================================================== -->
+
                     <?php
 
-                            // if(isset($_POST[""]))
-// 
-                            // $PDO = new PDO('mysql:host=localhost;dbname=to_do_list',$DB_USER,$DB_PASS,$options);
-// 
-                            // $sql = "DELETE FROM 'taches' WHERE 'id' = 1";
-// 
-                            // $stmt = $PDO->prepare($sql);
-// 
-                            // $stmt->execute();
+                        $PDO = new PDO('mysql:host=localhost;dbname=to_do_list', $DB_USER, $DB_PASS, $options);
 
-                    ?>
-                    <!-- =============================================================================================================================================================================== -->
-
-=======
+                        if(isset($_POST["supprimer"])){
+                            
+                            $PDO->exec('TRUNCATE TABLE `taches`');
+                        }
                     
->>>>>>> 260b492cfb3fdec09134333153d487bb6b123811
+                    ?>
 
-                        <!-- Tâche n°2 -->
