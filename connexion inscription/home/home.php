@@ -39,24 +39,11 @@ require 'db-config.php';
                     <form method="POST" action="home.php">
                         <!-- <div class="col"> -->
                         <input class="form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" placeholder="Ajouter nouvelle tâche..." name="nouvelletache">
-                        <br><br><input class="form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" placeholder="Date : Année-mois-jour" name="date">
-                        <button type="submit" class="btn btn-primary" name="submit">Ajouter</button>
+                        <br><br><input class="form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" placeholder="Date : Année-mois-jour" name="date">                        <button type="submit" class="btn btn-primary" name="submit">Ajouter</button>
                         <!-- <input class="fa far far fa-calendar-times-o my-2 px-1 text-danger btn clear-due-date-button d-done" data-toggle="tooltip" data-placement="bottom" title="Supprimer tâche" name="supprimer">Supprimer tâche -->
 
                         <!-- </div> -->
                     </form>
-
-<!-- =============================================================================================================================================================================== -->
-                    <!-- Message d'erreur si l'utilisateur ne rentre aucune tache -->
-                    <?php
-                    if (isset($_GET["error"])) {
-                        if ($_GET['error'] == 'aucunetache') {
-                            //  Affichage du message dans 'echo' 
-                            echo "<h3><br><br>Ajoute une tâche !</h3>";
-                        }
-                    }
-                    ?>
-<!-- =============================================================================================================================================================================== -->
 
                     <div class="col-auto m-0 px-2 d-flex align-items-center">
                         <label class="text-secondary my-3 p-0 px-1 view-opt label due-date-label d-none">Date de
@@ -125,14 +112,24 @@ require 'db-config.php';
         </div> -->
                     <!-- </div>
     </div> -->
+<!-- =============================================================================================================================================================================== -->
+                    <?php
 
+                    if (isset($_GET["error"])) {
+                        if ($_GET['error'] == 'aucunetache') {
+                            //  Affichage du message dans 'echo' 
+                            echo "<br><left><h3>Ajoute une tâche !</h3></left>";
+                        }
+                    }
 
-
+                    ?>
+<!-- =============================================================================================================================================================================== -->
+                    
                     <div class="text-center">
 
                         <form action="home.php" method="POST">
                             <br>
-                            <button type="submit" class="btn btn-primary" name="supprimer">Supprimer</button>
+                            <button type="submit" class="btn btn-danger" name="supprimer">Supprimer</button>
                         </form>
 
                     </div>
@@ -141,29 +138,37 @@ require 'db-config.php';
 
                     <?php
 
-                         $PDO = new PDO('mysql:host=localhost;dbname=to_do_list', $DB_USER, $DB_PASS, $options);
-
-                         $stm = $PDO->query('SELECT * FROM taches');
-
-                         $rows = $stm->fetchAll(PDO::FETCH_NUM);
-
-                         foreach ($rows as $row) {
-                            echo ("<br><br><center><h3> $row[0]</h3> <u> tache N° $row[1] a rendre avant le $row[2]</u></center>");   
-                            
-                        }
-
-                    ?>
-
-<!-- =============================================================================================================================================================================== -->
-
-                    <?php
-
                         $PDO = new PDO('mysql:host=localhost;dbname=to_do_list', $DB_USER, $DB_PASS, $options);
 
-                        if(isset($_POST["supprimer"])){
-                            
-                            $PDO->exec('TRUNCATE TABLE `taches`');
+                        $stm = $PDO->query('SELECT * FROM taches');
+
+                        // PDO::FETCH_NUM Retourne un tableau indexé par le numéro de la colonne
+                        $rows = $stm->fetchAll(PDO::FETCH_NUM);
+
+                        foreach ($rows as $row) {
+                            // echo ("<br><br><center> <h3> <input type='checkbox'> $row[0]<br> </h3> <u> tache N° $row[1] a rendre avant le $row[2] </u> </center>");
+                               echo ("<br><br><center><h2>$row[0]</h2><u>tache N° $row[1] A rendre avant le : $row[2]</u></center>");
+                               echo("
+                               <form action='home.php' method='POST'>
+                               
+                                <input type='checkbox' name='checkbox[]'/>
+                                
+                                </form>");                                   
                         }
-                    
+
                     ?>
 
+
+<!-- =============================================================================================================================================================================== -->
+                         <?php
+                                                     
+                            if(isset($_POST['supprimer'])){
+                            
+                                $PDO->exec('TRUNCATE TABLE `taches`');   
+                                    
+                                }
+                            
+                                
+                            
+
+                        ?>
